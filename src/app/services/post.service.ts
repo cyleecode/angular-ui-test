@@ -38,10 +38,10 @@ export class PostService {
     return this.http.get<IPost>(url);
   }
 
-  fetchComment({ id }: IComment) {
+  fetchComment({ id }: IPostFetch) {
     let params;
     if (id) params = new HttpParams().set('postId', id);
     const url = this.commentUrl;
-    return this.http.get<Observable<IPost | IPost[]>>(url, { params });
+    return this.http.get<IComment[]>(url, { params });
   }
 }
