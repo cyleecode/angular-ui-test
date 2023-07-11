@@ -3,16 +3,22 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface IPostFetch {
-  postId?: number;
+  id?: number;
 }
-type IPost =
-  | {
-      postId: number;
-      id: number;
-      title: string;
-      body: string;
-    }
-  | { email: string };
+
+export type IPost = {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+};
+export type IComment = {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
+  body: string;
+};
 
 @Injectable({
   providedIn: 'root',
@@ -22,15 +28,15 @@ export class PostService {
   readonly postUrl = 'https://jsonplaceholder.typicode.com/posts';
   readonly commentUrl = 'https://jsonplaceholder.typicode.com/comments';
 
-  fetchPost({ postId }: IPostFetch) {
+  fetchPost({ id }: IPostFetch): Observable<IPost[]> {
     let url = this.postUrl;
-    if (postId) url += `/${postId}`;
-    return this.http.get(url);
+    if (id) url += `/${id}`;
+    return this.http.get<IPost[]>(url);
   }
 
-  fetchComment({ postId }: IPostFetch) {
+  fetchComment({ id }: IComment) {
     let params;
-    if (postId) params = new HttpParams().set('postId', postId);
+    if (id) params = new HttpParams().set('postId', id);
     const url = this.commentUrl;
     return this.http.get<Observable<IPost | IPost[]>>(url, { params });
   }
