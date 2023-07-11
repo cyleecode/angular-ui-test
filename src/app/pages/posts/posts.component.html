@@ -1,14 +1,17 @@
-<div *ngIf="allPost$ | async as items">
-  <ng-container *ngFor="let data of items">
-    <mat-card (click)="viewPost(data)" id="{{ data.id }}">
-      <mat-card-title>
-        <h2>
-          {{ data.title }}
-        </h2>
-      </mat-card-title>
-      <mat-card-content>
-        {{ data.body }}
-      </mat-card-content>
-    </mat-card>
-  </ng-container>
+<div>
+  <header>Comments Manager</header>
+  <div *ngIf="allPost$ | async as items">
+    <ng-container *ngFor="let data of items">
+      <mat-card (click)="viewPost(data)" id="{{ data.id }}">
+        <mat-card-title>
+          <h2>
+            {{ data.title }}
+          </h2>
+        </mat-card-title>
+        <mat-card-content>
+          {{ data.body }}
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
 </div>

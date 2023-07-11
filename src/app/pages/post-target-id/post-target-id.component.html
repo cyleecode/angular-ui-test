@@ -12,14 +12,13 @@
   </mat-card>
 </div>
 <br />
-<div class="filter-button">
-  <button mat-stroked-button (click)="setFilter()">Filter</button>
-</div>
 <br />
-<div *ngIf="comment$ | async as items">
+<div *ngIf="comment$ | async as items" class="comments">
+  <div class="filter-button">
+    <button mat-stroked-button (click)="setFilter()">Filter</button>
+  </div>
   <ng-container *ngFor="let item of items">
     <mat-card
-      class="comments"
       *ngIf="
         !isSearchOptionSet()
           ? true
