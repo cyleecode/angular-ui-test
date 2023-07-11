@@ -28,10 +28,14 @@ export class PostService {
   readonly postUrl = 'https://jsonplaceholder.typicode.com/posts';
   readonly commentUrl = 'https://jsonplaceholder.typicode.com/comments';
 
-  fetchPost({ id }: IPostFetch): Observable<IPost[]> {
+  fetchPostList(): Observable<IPost[]> {
+    let url = this.postUrl;
+    return this.http.get<IPost[]>(url);
+  }
+  fetchPostId({ id }: IPostFetch): Observable<IPost> {
     let url = this.postUrl;
     if (id) url += `/${id}`;
-    return this.http.get<IPost[]>(url);
+    return this.http.get<IPost>(url);
   }
 
   fetchComment({ id }: IComment) {
