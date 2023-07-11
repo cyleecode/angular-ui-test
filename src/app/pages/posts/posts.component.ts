@@ -9,7 +9,7 @@ import { IPost, PostService } from 'src/app/services/post.service';
 })
 export class PostsComponent {
   constructor(private postService: PostService, private router: Router) {
-    this.allPost$ = postService.fetchPost({});
+    this.allPost$ = postService.fetchPostList();
   }
   allPost$;
 
