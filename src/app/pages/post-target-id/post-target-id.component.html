@@ -1,0 +1,38 @@
+<div *ngIf="this.data$ | async as data" class="posts">
+  <mat-card id="{{ data.id }}">
+    <mat-card-title>
+      <h2>
+        {{ data.title }}
+      </h2>
+    </mat-card-title>
+    <mat-card-content>
+      {{ data.body }}
+    </mat-card-content>
+    <mat-card-footer> </mat-card-footer>
+  </mat-card>
+</div>
+<br />
+<div class="filter-button">
+  <button mat-stroked-button (click)="setFilter()">Filter</button>
+</div>
+<br />
+<div *ngIf="comment$ | async as items">
+  <ng-container *ngFor="let item of items">
+    <mat-card
+      class="comments"
+      *ngIf="
+        !isSearchOptionSet()
+          ? true
+          : isEmailFilter(item.email) ||
+            isBodyFilter(item.body) ||
+            isNameFilter(item.name)
+      "
+    >
+      <mat-card-title
+        ><b>{{ item.name }}</b></mat-card-title
+      >
+      <mat-card-content>{{ item.body }}</mat-card-content>
+      <mat-card-footer>{{ item.email }}</mat-card-footer>
+    </mat-card>
+  </ng-container>
+</div>
