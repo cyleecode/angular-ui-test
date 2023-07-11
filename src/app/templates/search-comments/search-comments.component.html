@@ -1,0 +1,21 @@
+<div>
+  <h2>Advanced Search</h2>
+  <form [formGroup]="form" (ngSubmit)="close()">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="name" />
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="email" />
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Body</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="body" />
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <button mat-flat-button type="submit">Apply</button>
+  </form>
+</div>
